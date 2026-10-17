@@ -1,0 +1,38 @@
+version: 2
+
+sources:
+  - name: lending_club
+    description: >-
+      Local Lending Club US accepted personal-loan CSV. This is not Canadian SME
+      data. The path is supplied by LENDING_CLUB_CSV and is never committed.
+    tables:
+      - name: accepted_loans_csv
+        description: >-
+          One physical CSV record. The distribution also contains embedded funding
+          summary text records, which staging identifies separately from loans.
+        config:
+          external_location: "read_csv('{{ env_var('LENDING_CLUB_CSV') }}', header=true, all_varchar=true)"
+          formatter: oldstyle
+
+  - name: legacy_sql
+    description: >-
+      Aggregate-only snapshots produced by analytics/run.py from the verified full
+      CSV. They are regression evidence, never inputs to dbt business calculations.
+    tables:
+      - name: portfolio
+        config:
+          external_location: "read_csv('../analytics/reports/full/01_portfolio.csv', header=true)"
+          formatter: oldstyle
+      - name: segments
+        config:
+          external_location: "read_csv('../analytics/reports/full/02_segments.csv', header=true)"
+          formatter: oldstyle
+      - name: cohorts
+        config:
+          external_location: "read_csv('../analytics/reports/full/03_cohorts.csv', header=true)"
+          formatter: oldstyle
+      - name: manifest
+        description: Source identity and quality totals from the verified analytics/run.py execution.
+        config:
+          external_location: "read_json_auto('../analytics/reports/full/manifest.json')"
+          formatter: oldstyle

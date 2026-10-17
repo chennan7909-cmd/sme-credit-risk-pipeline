@@ -1,0 +1,12 @@
+sme_credit_risk:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('DBT_DUCKDB_PATH', 'target/sme_credit_risk.duckdb') }}"
+      schema: analytics
+      threads: 4
+      settings:
+        memory_limit: "4GB"
+        temp_directory: "{{ env_var('DBT_DUCKDB_TEMP_DIR', 'target/duckdb_temp') }}"
+        preserve_insertion_order: false

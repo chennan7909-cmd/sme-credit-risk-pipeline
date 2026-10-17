@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: stg_lending_club__accepted_loans
+    description: >-
+      Typed projection of the local Lending Club accepted-loan CSV at physical-record
+      grain. It retains source meaning, flags contract validity, and classifies the
+      distribution's embedded funding summaries separately from loan records.
+    columns:
+      - name: source_row_number
+        description: Stable scan-order position used only for first-valid-ID deduplication.
+      - name: loan_id
+        description: Source loan identifier, or source summary text for non-loan records.
+      - name: is_non_loan_summary
+        description: True only for embedded funding totals or their section label.
+      - name: is_contract_valid
+        description: True when the record satisfies the documented loan data contract.
+      - name: quality_issue
+        description: First failed contract rule; non-loan summaries have their own label.

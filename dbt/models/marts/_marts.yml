@@ -1,0 +1,85 @@
+version: 2
+
+models:
+  - name: mart_portfolio
+    description: >-
+      One-row portfolio summary. Resolved default rate is Charged Off or Default divided
+      by Fully Paid, Charged Off or Default; unresolved statuses are excluded.
+    columns:
+      - name: accepted_loans
+        description: Valid, distinct accepted loans; not all applications.
+        data_tests: [not_null]
+      - name: original_principal_usd
+        description: Sum of original loan amount, not current exposure or revenue.
+      - name: resolved_loans
+        description: Fully Paid, Charged Off or Default loans.
+      - name: defaulted_loans
+        description: Charged Off or Default loans.
+      - name: resolved_share
+        description: Resolved loans divided by accepted loans.
+      - name: resolved_default_rate
+        description: Defaulted loans divided by resolved loans.
+
+  - name: mart_segments
+    description: >-
+      One row per purpose, US state or grade. Includes rate, count, share and coverage
+      measures so high-frequency and high-volume review candidates remain distinct.
+    columns:
+      - name: dimension
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [purpose, state, grade]
+      - name: segment
+        data_tests: [not_null]
+      - name: resolved_default_rate
+        description: Defaulted divided by resolved loans within the segment.
+      - name: default_count_share
+        description: Segment defaults divided by all defaults within the dimension.
+      - name: gap_pp
+        description: Percentage-point difference from the portfolio resolved default rate.
+      - name: volume_flag
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [reviewable_volume, small_sample]
+
+  - name: mart_cohorts
+    description: >-
+      One row per grade and issue year. Rates are resolved-only descriptive outcomes,
+      not fixed-horizon default rates; resolved_share must accompany vintage comparisons.
+    columns:
+      - name: grade
+        data_tests: [not_null]
+      - name: issue_year
+        data_tests: [not_null]
+      - name: resolved_share
+        description: Resolved loans divided by accepted loans in the grade-year cohort.
+      - name: yoy_change_pp
+        description: >-
+          Percentage-point rate change only when the previous row is the immediately
+          preceding calendar year.
+
+  - name: mart_data_quality
+    description: >-
+      One-row reconciliation of physical source records, separately identified non-loan
+      summaries, invalid loan records, duplicates and accepted loans.
+    columns:
+      - name: source_records
+        data_tests: [not_null]
+      - name: non_loan_summary_records
+        description: Embedded funding summaries; never described as anomalous loans.
+      - name: invalid_loan_records
+        description: Non-summary records failing the loan data contract.
+      - name: duplicate_loan_records
+        description: Valid later occurrences of a previously accepted loan ID.
+      - name: accepted_loans
+        description: Valid first occurrences retained for analysis.
+
+  - name: mart_status_coverage
+    description: One row per loan status among valid, distinct loans.
+    columns:
+      - name: loan_status
+        data_tests: [unique, not_null]
+      - name: loans
+        data_tests: [not_null]

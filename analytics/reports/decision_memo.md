@@ -2,8 +2,8 @@
 
 **Decision supported:** prioritize follow-up portfolio analysis, not approve or
 reject applicants. **Audience:** risk/product analyst and business stakeholders.
-**Evidence:** a verified local run of the complete Lending Club accepted-loan CSV;
-only aggregate evidence is retained in this report directory.
+**Evidence:** verified full-data runs through both the Python/SQLite baseline and the
+dbt + DuckDB workflow; only aggregate evidence is retained in this report directory.
 
 ## Portfolio and data quality
 
@@ -69,6 +69,8 @@ differences are display rounding only.
 - Aggregate full-run outputs: [portfolio](full/01_portfolio.csv),
   [segments](full/02_segments.csv), [cohorts](full/03_cohorts.csv),
   [status coverage](full/status_coverage.csv) and [manifest](full/manifest.json).
+- The [dbt workflow](../../docs/dbt_workflow.md) independently reproduces these
+  portfolio, segment and cohort aggregates and documents its 39 full-data tests.
 - Historical extracts remain in [historical](historical/) for comparison.
 - The source digest in the full-run manifest is
   `3eae03c28fd9d2e8a076ebeb73507e8d4d0f44d90500decdb0936e0933d1f36a`.

@@ -52,3 +52,13 @@ The fixture is hand-authored synthetic data for code validation only. The full
 accepted-loan CSV must be supplied separately; its filename, columns and size can
 vary by distribution. Published historical results came from the original notebook,
 whose missing-value and row filtering rules differ from this new contract.
+
+## dbt implementation
+
+The same definitions are implemented in `dbt/models`: staging performs typed parsing
+and record classification, intermediate models apply first-valid-ID deduplication and
+exact-status flags, and marts calculate portfolio, segment and cohort measures.
+Model and column descriptions live in the adjacent YAML files. Singular tests verify
+the numerator/denominator ordering and reconcile dbt aggregates to the independent
+`analytics/run.py` full-data evidence. The 33 embedded funding-summary records are
+reported separately in `mart_data_quality`; they are not invalid loans.

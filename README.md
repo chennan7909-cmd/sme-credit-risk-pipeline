@@ -1,6 +1,6 @@
 # Lending Club Portfolio Analytics & Credit Risk Pipeline
 
-**SQL business analysis · KPI definitions · Portfolio review · Historical ML coursework**
+**dbt + DuckDB analytics engineering · SQL business analysis · Portfolio review**
 
 An analyst-facing review of US consumer-loan performance: which segments deserve
 investigation, how do volume and rate change prioritization, and when do incomplete
@@ -15,6 +15,7 @@ outcomes make vintage comparisons misleading?
 
 - [Business findings and proposed decisions](analytics/reports/decision_memo.md)
 - [Metric dictionary and data-quality rules](docs/metric_dictionary.md)
+- [Verified dbt workflow, models and tests](docs/dbt_workflow.md)
 - [Executable SQL](analytics/sql) and [runner](analytics/run.py)
 - [Analytical review: population, leakage, coverage and deployment limits](docs/analytical_review.md)
 
@@ -31,6 +32,44 @@ outcomes make vintage comparisons misleading?
 These are descriptive associations and proposed follow-up actions, not causal
 findings or implemented policy. Rates are conditional on resolved status.
 [Trace the results to aggregate full-run outputs](analytics/reports/full/manifest.json).
+
+## Reproduce the verified dbt workflow
+
+The full-data workflow is implemented with dbt Core and DuckDB. DuckDB reads the
+local CSV directly as an external source; no Pandas load or committed raw table is
+required. The exact tested dependencies are pinned in `requirements-dbt.txt`.
+
+```bash
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dbt.lock.txt
+export LENDING_CLUB_CSV="/absolute/path/to/accepted_loans.csv"
+
+cd dbt
+mkdir -p target/duckdb_temp
+../.venv/bin/dbt build --profiles-dir .
+../.venv/bin/dbt docs generate --profiles-dir .
+cd ..
+
+.venv/bin/python scripts/reconcile_dbt.py
+```
+
+The verified full run created eight models and passed all 39 data tests: primary-key
+and contract checks, portfolio bounds, dimensional reconciliations, and regression
+tests against the existing SQL aggregates. The independent reconciliation also
+verified the raw-file digest and all requested exact counts. Generated databases,
+logs, docs artifacts and loan-level relations remain gitignored.
+
+### dbt model layers
+
+| Layer | Models | Grain and responsibility |
+|---|---|---|
+| Source | `lending_club.accepted_loans_csv` | One physical CSV record, configured by `LENDING_CLUB_CSV` |
+| Staging | `stg_lending_club__accepted_loans` | Typed source projection plus contract and non-loan-summary flags |
+| Intermediate | `int_lending_club__loan_records`, `int_lending_club__valid_loans` | Status mapping, first-valid-ID deduplication and one row per valid loan |
+| Marts | portfolio, segments, cohorts, data quality, status coverage | Aggregate evidence for business review; no public loan IDs |
+
+Model descriptions, metric denominators and column tests are in the dbt YAML files;
+the complete design and validation record is in the [dbt workflow guide](docs/dbt_workflow.md).
 
 ## Run the SQL analysis locally
 
@@ -99,8 +138,10 @@ artifacts and may contain those original labels.
 | `analytics/reports/full/` | Aggregate-only evidence from the verified full-data run |
 | `analytics/reports/historical/` | Partial tables extracted from notebook text, with provenance |
 | `analytics/reports/decision_memo.md` | Findings, interpretation, proposed actions and boundaries |
+| `dbt/` | Layered dbt project, source definitions, model docs and data tests |
 | `docs/` | Metric definitions, analytical review and resume evidence |
 | `tests/` | Denominator, reconciliation, missing-data and window-function checks |
+| `scripts/reconcile_dbt.py` | Source-digest and exact-count reconciliation between dbt and existing SQL |
 | `scripts/extract_notebook_evidence.py` | Recreate historical extracts without rerunning the notebook |
 
 To regenerate the historical extracts:

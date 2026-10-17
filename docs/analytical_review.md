@@ -1,8 +1,8 @@
 # Analytical review and boundaries
 
-The original notebook and PDF are preserved as historical coursework. This change
-adds a separate SQL reporting layer; it does not silently replace stored model
-outputs or claim that the model has been retrained.
+The original notebook and PDF are preserved as historical coursework. This project
+adds separate SQL and dbt reporting layers; it does not silently replace stored
+model outputs or claim that the model has been retrained.
 
 ## Issues identified in the original implementation
 
@@ -40,15 +40,15 @@ outputs or claim that the model has been retrained.
 
 ## What this iteration establishes
 
-Executable descriptive SQL, explicit metric denominators, coverage checks,
-traceable saved results and proposed next decisions. It does not establish causal
-product impact, production readiness, Canadian SME model validity, dbt experience,
-user conversion, revenue, approval rates, or a live business deployment.
+Executable descriptive SQL, a full-data-verified dbt + DuckDB workflow, explicit
+metric denominators, coverage checks, traceable saved results and proposed next
+decisions. It establishes the dbt implementation documented in this repository,
+but not years of dbt experience, production ownership, causal product impact,
+Canadian SME model validity, user conversion, revenue, approval rates, or a live
+business deployment.
 
-## Next analytical work with the full dataset
+## Next analytical work
 
-- Re-run SQL on the original CSV and investigate all exclusions; compare to legacy
-  aggregates without requiring exact agreement across different cleaning contracts.
 - Compare purpose and state signals within grade × term × issue vintage, retaining
   unresolved shares and sample counts; add uncertainty before ranking review actions.
 - Obtain dated outcomes and snapshot metadata before estimating fixed-horizon

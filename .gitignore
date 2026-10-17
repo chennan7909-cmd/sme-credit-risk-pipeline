@@ -1,5 +1,12 @@
 __pycache__/
 *.pyc
 .venv/
+.env
+*.duckdb
+*.duckdb.wal
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+dbt/.user.yml
 analytics/local_outputs/
 analytics/data/accepted*.csv

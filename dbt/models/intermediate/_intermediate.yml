@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  - name: int_lending_club__loan_records
+    description: >-
+      Source-record-grain classification with first-valid-occurrence duplicate handling
+      and exact-status resolved/default mappings.
+    columns:
+      - name: source_row_number
+        data_tests: [unique, not_null]
+      - name: is_non_loan_summary
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [true, false]
+                quote: false
+      - name: is_contract_valid
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [true, false]
+                quote: false
+      - name: is_duplicate
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [true, false]
+                quote: false
+      - name: is_resolved
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
+      - name: is_default
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
+
+  - name: int_lending_club__valid_loans
+    description: >-
+      One valid, distinct Lending Club US personal loan per loan_id. This local relation
+      is not public evidence and is stored only in the ignored DuckDB database.
+    columns:
+      - name: loan_id
+        description: Unique source loan identifier.
+        data_tests: [unique, not_null]
+      - name: loan_amnt
+        description: Original principal in USD; positive and finite.
+        data_tests: [not_null]
+      - name: loan_status
+        data_tests: [not_null]
+      - name: issue_month
+        data_tests: [not_null]
+      - name: term_months
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [36, 60]
+                quote: false
+      - name: grade
+        data_tests: [not_null]
+      - name: purpose
+        data_tests: [not_null]
+      - name: addr_state
+        data_tests: [not_null]
+      - name: is_resolved
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
+      - name: is_default
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
