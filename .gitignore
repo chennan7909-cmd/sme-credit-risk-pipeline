@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.venv/
+analytics/local_outputs/
+analytics/data/accepted*.csv

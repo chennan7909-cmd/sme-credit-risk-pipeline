@@ -1,0 +1,2 @@
+id,grade,term_months,issue_month,fico_range_low,fico_percentile,int_rate,grade_avg_interest_rate,interest_gap_pp
+DEMO-005,B,60,2016-02,740.0,1.0,20.0,15.0,5.0

@@ -1,0 +1,13 @@
+dimension,segment,accepted_loans,resolved_loans,defaulted_loans,original_principal_usd,resolved_share,resolved_default_rate,gap_pp,default_count_share,volume_flag
+grade,B,6,4,2,82000.0,0.6666666666666666,0.5,7.142857142857145,0.6666666666666666,small_sample
+grade,A,4,3,1,34000.0,0.75,0.3333333333333333,-9.523809523809524,0.3333333333333333,small_sample
+purpose,small_business,2,2,2,38000.0,1.0,1.0,57.14285714285714,0.6666666666666666,small_sample
+purpose,moving,1,1,1,8000.0,1.0,1.0,57.14285714285714,0.3333333333333333,small_sample
+purpose,car,1,1,0,6000.0,1.0,0.0,-42.857142857142854,0.0,small_sample
+purpose,credit_card,2,2,0,21000.0,1.0,0.0,-42.857142857142854,0.0,small_sample
+purpose,debt_consolidation,2,1,0,25000.0,0.5,0.0,-42.857142857142854,0.0,small_sample
+purpose,medical,1,0,0,11000.0,0.0,,,0.0,small_sample
+purpose,other,1,0,0,7000.0,0.0,,,0.0,small_sample
+state,MS,2,2,2,38000.0,1.0,1.0,57.14285714285714,0.6666666666666666,small_sample
+state,NY,4,2,1,40000.0,0.5,0.5,7.142857142857145,0.3333333333333333,small_sample
+state,CA,4,3,0,38000.0,0.75,0.0,-42.857142857142854,0.0,small_sample

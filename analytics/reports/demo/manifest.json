@@ -1,0 +1,16 @@
+{
+  "source": "synthetic-demo",
+  "input_sha256": "14fd4b2c16ee84700eae7dcf3a87f913b335e77978e580d63ae59419c5a2837a",
+  "quality": {
+    "source_rows": 10,
+    "loaded_rows": 10,
+    "rejected_rows": 0,
+    "duplicate_ids": 0,
+    "missing_interest_rate": 1,
+    "missing_fico": 1,
+    "unknown_dimensions": 0
+  },
+  "sqlite_version": "3.53.1",
+  "outcome_definition": "Charged Off or Default / Fully Paid, Charged Off or Default",
+  "warning": "Resolved-only descriptive rates; no fixed observation horizon or causal claims."
+}

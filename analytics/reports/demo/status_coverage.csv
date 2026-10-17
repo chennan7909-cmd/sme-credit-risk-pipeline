@@ -1,0 +1,6 @@
+loan_status,loans
+Charged Off,2
+Current,2
+Default,1
+Fully Paid,4
+Late (31-120 days),1

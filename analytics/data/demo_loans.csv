@@ -1,0 +1,11 @@
+id,loan_amnt,loan_status,issue_d,term,grade,purpose,addr_state,int_rate,fico_range_low
+DEMO-001,10000,Fully Paid,Jan-2015,36 months,B,debt_consolidation,NY,12,680
+DEMO-002,20000,Charged Off,Feb-2015,36 months,B,small_business,MS,18,700
+DEMO-003,15000,Current,Mar-2015,60 months,B,debt_consolidation,NY,14,710
+DEMO-004,12000,Fully Paid,Jan-2016,36 months,B,credit_card,CA,10,690
+DEMO-005,18000,Charged Off,Feb-2016,60 months,B,small_business,MS,20,740
+DEMO-006,9000,Fully Paid,Mar-2016,36 months,A,credit_card,CA,7,750
+DEMO-007,8000,Default,Apr-2016,36 months,A,moving,NY,9,760
+DEMO-008,11000,Late (31-120 days),May-2016,36 months,A,medical,CA,8,770
+DEMO-009,6000,Fully Paid,Jun-2018,36 months,A,car,CA,,
+DEMO-010,7000,Current,Jul-2018,60 months,B,other,NY,16,700

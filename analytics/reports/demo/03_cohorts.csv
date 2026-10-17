@@ -1,0 +1,6 @@
+grade,issue_year,accepted_loans,resolved_loans,defaulted_loans,resolved_default_rate,previous_year,previous_rate,resolved_share,yoy_change_pp
+A,2016,3,2,1,0.5,,,0.6666666666666666,
+A,2018,1,1,0,0.0,2016,0.5,1.0,
+B,2015,3,2,1,0.5,,,0.6666666666666666,
+B,2016,2,2,1,0.5,2015,0.5,1.0,0.0
+B,2018,1,0,0,,2016,0.5,0.0,

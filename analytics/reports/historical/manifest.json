@@ -1,0 +1,12 @@
+{
+  "source": "Individual_Project_Chen.ipynb",
+  "sha256": "0d78641fdc07520ecdb010c8e21730cb581e83023d5050206e97b46c9262f9f8",
+  "cell_index_zero_based": 11,
+  "evidence_type": "saved notebook text outputs; not rerun",
+  "coverage": {
+    "states": "top 15 only",
+    "cohorts": "first 30 only",
+    "purposes": "all 14 displayed"
+  },
+  "semantics": "state replaces misleading original province label; rates unchanged"
+}
