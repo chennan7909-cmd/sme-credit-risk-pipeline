@@ -8,8 +8,8 @@ outcomes make vintage comparisons misleading?
 
 > **Scope:** Public Lending Club US personal loans, not Canadian SME data. The
 > original coursework notebook uses simulated streaming and contains methodological
-> limitations. Historical findings below are extracted from saved notebook output;
-> the new SQL layer has been run on a clearly labeled synthetic fixture only.
+> limitations. The SQL layer has now been verified against the complete accepted-loan
+> CSV; raw and loan-level data remain local and are not stored in the repository.
 
 ## Start here
 
@@ -20,17 +20,17 @@ outcomes make vintage comparisons misleading?
 
 ## Findings: rate is only one part of prioritization
 
-| Question | Saved historical evidence | Proposed decision |
+| Question | Verified full-data evidence | Proposed decision |
 |---|---|---|
-| Which loan purposes need review? | Small-business purpose: 29.71% resolved default rate, 15,416 loans; debt consolidation: 21.15%, 780,342 loans | Investigate large-volume segments alongside high-rate niches |
-| Does the highest-rate state create the most defaults? | MS: 26.08%, 1,718 defaults; NY: 22.05%, 24,220 defaults | Consider counts and segment mix, not rate alone |
-| Did grade B vintages change? | 2015: 13.03%; 2016: 16.11% (+3.08 pp) | Check resolution coverage and observation windows first |
+| Which loan purposes need review? | Small business: 29.71%, 4,580 defaults; debt consolidation: 21.15%, 165,035 defaults | Investigate large-volume segments alongside high-rate niches |
+| Does the highest-rate state create the most defaults? | MS: 26.08%, 1,718 defaults; CA: 19.61%, 38,541 defaults | Consider counts and segment mix, not rate alone |
+| Did grade B vintages change? | 2015: 13.03% at 90.91% resolved; 2016: 16.11% at 66.17% resolved | Check resolution coverage and observation windows first |
 
-![Historical loan-purpose rates and volumes](analytics/reports/historical/portfolio_review.png)
+![Full-data loan-purpose rates and volumes](analytics/reports/full/portfolio_review.svg)
 
 These are descriptive associations and proposed follow-up actions, not causal
 findings or implemented policy. Rates are conditional on resolved status.
-[Trace the results to saved outputs](analytics/reports/historical/manifest.json).
+[Trace the results to aggregate full-run outputs](analytics/reports/full/manifest.json).
 
 ## Run the SQL analysis locally
 
@@ -55,9 +55,10 @@ python analytics/run.py --csv /path/to/accepted_2007_to_2018Q4.csv --out analyti
 
 The runner retains unresolved statuses to report coverage. It produces portfolio,
 segment, cohort, pricing-review and status-coverage CSVs plus a quality/source
-manifest. Review rejected rows and missingness before interpreting results. Full
-CSV execution has not been verified here; it requires local memory for SQLite and
-window queries. This is a batch analysis, not a production serving system.
+manifest. The complete 2.26M-record CSV run has been verified locally; 2,260,668
+loans loaded and 33 embedded non-loan summary rows were rejected. It requires local
+memory for SQLite and window queries. This is a batch analysis, not a production
+serving system.
 
 ### SQL examples and business questions
 
@@ -95,6 +96,7 @@ artifacts and may contain those original labels.
 | `analytics/sql/` | Readable SQL analysis |
 | `analytics/data/demo_loans.csv` | Synthetic validation fixture |
 | `analytics/reports/demo/` | Generated synthetic outputs and source manifest |
+| `analytics/reports/full/` | Aggregate-only evidence from the verified full-data run |
 | `analytics/reports/historical/` | Partial tables extracted from notebook text, with provenance |
 | `analytics/reports/decision_memo.md` | Findings, interpretation, proposed actions and boundaries |
 | `docs/` | Metric definitions, analytical review and resume evidence |

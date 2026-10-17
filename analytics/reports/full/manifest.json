@@ -1,0 +1,16 @@
+{
+  "source": "lending-club",
+  "input_sha256": "3eae03c28fd9d2e8a076ebeb73507e8d4d0f44d90500decdb0936e0933d1f36a",
+  "quality": {
+    "source_rows": 2260701,
+    "loaded_rows": 2260668,
+    "rejected_rows": 33,
+    "duplicate_ids": 0,
+    "missing_interest_rate": 0,
+    "missing_fico": 0,
+    "unknown_dimensions": 0
+  },
+  "sqlite_version": "3.53.4",
+  "outcome_definition": "Charged Off or Default / Fully Paid, Charged Off or Default",
+  "warning": "Resolved-only descriptive rates; no fixed observation horizon or causal claims."
+}

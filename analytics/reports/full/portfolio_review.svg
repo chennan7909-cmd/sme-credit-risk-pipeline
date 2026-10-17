@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+<rect width="1200" height="560" fill="#f8fafc"/>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#0f172a}.title{font-size:26px;font-weight:700}.panel{font-size:18px;font-weight:700}.label{font-size:13px}.axis{font-size:12px;fill:#475569}.value{font-size:12px;font-weight:600}</style>
+<text x="40" y="45" class="title">Loan-purpose review: balance rate with volume</text>
+<text x="40" y="88" class="panel">Highest rates: review frequency</text>
+<text x="40" y="136" class="label">debt consolidation</text>
+<rect x="190" y="118" width="263.4" height="25" rx="3" fill="#237a8c"/>
+<text x="460.4" y="136" class="value">21.1</text>
+<text x="40" y="188" class="label">medical</text>
+<rect x="190" y="170" width="271.3" height="25" rx="3" fill="#237a8c"/>
+<text x="468.3" y="188" class="value">21.8</text>
+<text x="40" y="240" class="label">house</text>
+<rect x="190" y="222" width="272.6" height="25" rx="3" fill="#237a8c"/>
+<text x="469.6" y="240" class="value">21.9</text>
+<text x="40" y="292" class="label">moving</text>
+<rect x="190" y="274" width="290.9" height="25" rx="3" fill="#237a8c"/>
+<text x="487.9" y="292" class="value">23.4</text>
+<text x="40" y="344" class="label">renewable energy</text>
+<rect x="190" y="326" width="295.0" height="25" rx="3" fill="#237a8c"/>
+<text x="492.0" y="344" class="value">23.7</text>
+<text x="40" y="396" class="label">small business</text>
+<rect x="190" y="378" width="370.0" height="25" rx="3" fill="#ea7b42"/>
+<text x="567.0" y="396" class="value">29.7</text>
+<text x="190" y="448" class="axis">Resolved default rate (%)</text>
+<text x="630" y="88" class="panel">Largest segments: review scale</text>
+<text x="630" y="136" class="label">medical</text>
+<rect x="780" y="118" width="7.4" height="25" rx="3" fill="#237a8c"/>
+<text x="794.4" y="136" class="value">15.6</text>
+<text x="630" y="188" class="label">major purchase</text>
+<rect x="780" y="170" width="14.0" height="25" rx="3" fill="#237a8c"/>
+<text x="801.0" y="188" class="value">29.4</text>
+<text x="630" y="240" class="label">other</text>
+<rect x="780" y="222" width="36.9" height="25" rx="3" fill="#237a8c"/>
+<text x="823.9" y="240" class="value">77.9</text>
+<text x="630" y="292" class="label">home improvement</text>
+<rect x="780" y="274" width="41.5" height="25" rx="3" fill="#237a8c"/>
+<text x="828.5" y="292" class="value">87.5</text>
+<text x="630" y="344" class="label">credit card</text>
+<rect x="780" y="326" width="140.0" height="25" rx="3" fill="#237a8c"/>
+<text x="927.0" y="344" class="value">295.3</text>
+<text x="630" y="396" class="label">debt consolidation</text>
+<rect x="780" y="378" width="370.0" height="25" rx="3" fill="#237a8c"/>
+<text x="1157.0" y="396" class="value">780.3</text>
+<text x="780" y="448" class="axis">Resolved loans (thousands)</text>
+<text x="40" y="505" class="axis">Source: full Lending Club accepted-loan CSV run; aggregate outputs only.</text>
+<text x="40" y="528" class="axis">Resolved loans only; descriptive comparison, not a causal or fixed-horizon estimate.</text>
+</svg>
